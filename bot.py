@@ -13,13 +13,13 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents);
 
 
-openai.api_key = os.getenv('apikey')
+openai.api_key = os.getenv('apikey') # Change api key in env
 
 
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Streaming(name='OpenApi', url='https://www.twitch.tv/hoodie4546'))
+    await bot.change_presence(activity=discord.Streaming(name='OpenApi', url='yourtwitchchannel')) # If you dont want this you can remove it
     print(f'Bot Status is Spiced up ! {bot.user.name}')
     print(f"{bot.user.name} is Ready For Ai Chating!")
     print(f"{bot.user.name} is connected to Open Ai Api!")
@@ -28,7 +28,7 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.channel.id == 1113365746219749477 and not message.author.bot:
+    if message.channel.id == 'Your Discord Channel id' and not message.author.bot:
         response = openai.Completion.create(
             engine='text-davinci-003',
             prompt=message.content,
